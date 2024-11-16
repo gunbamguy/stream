@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>군밤 세팅 정보</title>
+    <title>PSD to HTML</title>
     <style>
         .container {
             position: relative;
@@ -42,7 +42,8 @@
             display: block;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .layer-link:hover img {
+        .layer-link:hover img,
+        .layer-link.active img {
             transform: scale(1.05);
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
@@ -63,7 +64,8 @@
             font-size: 0.9em;
             margin-bottom: 5px; /* 이미지와 툴팁 사이 간격 */
         }
-        .layer-link:hover .tooltip {
+        .layer-link:hover .tooltip,
+        .layer-link.active .tooltip {
             opacity: 1;
         }
         /* 상단 왼쪽 링크 그룹 */
@@ -90,6 +92,18 @@
             background-color: #333;
             color: #fff;
         }
+        /* 우측 아래 안내 텍스트 스타일 */
+        .bottom-right-info {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 3; /* 다른 레이어들보다 위에 표시 */
+            font-size: 0.8em;
+            color: #666;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
         /* 모바일에서 컨테이너 및 링크 스타일 조정 */
         @media (max-width: 768px) {
             .container {
@@ -105,6 +119,12 @@
                 padding: 3px 7px;
                 font-size: 0.9em;
             }
+            .bottom-right-info {
+                bottom: 5px;
+                right: 5px;
+                padding: 3px 7px;
+                font-size: 0.7em;
+            }
         }
     </style>
 </head>
@@ -116,13 +136,18 @@
         <!-- 상단 왼쪽 링크 그룹 -->
         <div class="top-left-links">
             <!-- 제작자 링크 -->
-            <a href="https://cyborgman.tistory.com/" class="top-left-link" aria-label="제작 군밤가이">
-                제작:군밤가이
+            <a href="https://yourlink.com" class="top-left-link" aria-label="제작자 정보">
+                제작 : 군밤가이
             </a>
             <!-- 방송세팅 통합문서 링크 -->
-            <a href="https://cyborgman.tistory.com/entry/%EB%B0%A9%EC%86%A1%EC%84%B8%ED%8C%85-%ED%86%B5%ED%95%A9%EB%AC%B8%EC%84%9C" class="top-left-link" aria-label="방송세팅 통합문서">
+            <a href="https://yourlink.com/document" class="top-left-link" aria-label="방송세팅 통합문서">
                 방송세팅 통합문서
             </a>
+        </div>
+
+        <!-- 우측 아래 안내 텍스트 -->
+        <div class="bottom-right-info">
+            폰에선 한번누르고 다시클릭하면 링크로들어갑니다
         </div>
 
         <!-- 레이어 9 -->
@@ -281,5 +306,52 @@
             </a>
         </div>
     </div>
+
+    <!-- JavaScript 추가 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 터치 기기 여부 확인
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+
+            if (isTouchDevice) {
+                const interactiveLinks = document.querySelectorAll('.layer-link');
+
+                interactiveLinks.forEach(function(link) {
+                    let touched = false;
+
+                    link.addEventListener('click', function(e) {
+                        if (!touched) {
+                            e.preventDefault(); // 링크 이동 방지
+                            // 모든 다른 링크의 active 클래스를 제거
+                            interactiveLinks.forEach(function(otherLink) {
+                                if (otherLink !== link) {
+                                    otherLink.classList.remove('active');
+                                }
+                            });
+                            // 현재 링크에 active 클래스 추가
+                            link.classList.add('active');
+                            touched = true;
+
+                            // 일정 시간 후에 active 클래스 제거
+                            setTimeout(function() {
+                                link.classList.remove('active');
+                                touched = false;
+                            }, 2000); // 2초 후에 active 해제
+                        }
+                        // 두 번째 터치는 기본 링크 동작을 허용
+                    });
+                });
+
+                // 링크 외부를 터치하면 모든 active 클래스를 제거
+                document.addEventListener('click', function(e) {
+                    interactiveLinks.forEach(function(link) {
+                        if (!link.contains(e.target)) {
+                            link.classList.remove('active');
+                        }
+                    });
+                });
+            }
+        });
+    </script>
 </body>
 </html>
