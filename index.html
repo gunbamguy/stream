@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>PSD to HTML</title>
+    <style>
+        .container {
+            position: relative;
+            width: 70vw;
+            height: 70vh;
+            max-width: 1280px;
+            max-height: 720px;
+            margin: 0 auto;
+            border: 2px solid #000; /* 컨테이너 확인용 */
+            background-color: #f0f0f0; /* 컨테이너 배경색 */
+        }
+        /* 배경 레이어 스타일 */
+        .layer-background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* 배경 레이어를 맨 뒤로 */
+        }
+        /* 인터랙티브 레이어의 래퍼 */
+        .layer-wrapper {
+            position: absolute;
+            z-index: 2; /* 배경 위에 표시 */
+        }
+        /* 링크와 호버 효과 */
+        .layer-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            text-decoration: none;
+        }
+        .layer-link img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .layer-link:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        /* 툴팁 스타일 */
+        .tooltip {
+            position: absolute;
+            bottom: 100%; /* 이미지 위에 위치 */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            font-size: 0.9em;
+            margin-bottom: 5px; /* 이미지와 툴팁 사이 간격 */
+        }
+        .layer-link:hover .tooltip {
+            opacity: 1;
+        }
+        /* 상단 왼쪽 링크 그룹 */
+        .top-left-links {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 3; /* 다른 레이어들보다 위에 표시 */
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* 링크 간 간격 */
+        }
+        /* 공통 링크 스타일 */
+        .top-left-link {
+            text-decoration: none;
+            color: #333;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .top-left-link:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        /* 모바일에서 컨테이너 및 링크 스타일 조정 */
+        @media (max-width: 768px) {
+            .container {
+                width: 90vw;
+                height: 90vh;
+            }
+            .top-left-links {
+                top: 5px;
+                left: 5px;
+                gap: 5px;
+            }
+            .top-left-link {
+                padding: 3px 7px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 배경 레이어 (호버 및 링크 없음) -->
+        <img src="layer_24.png" class="layer-background" alt="배경 레이어">
+
+        <!-- 상단 왼쪽 링크 그룹 -->
+        <div class="top-left-links">
+            <!-- 제작자 링크 -->
+            <a href="https://cyborgman.tistory.com/" class="top-left-link" aria-label="제작 군밤가이">
+                제작:군밤가이
+            </a>
+            <!-- 방송세팅 통합문서 링크 -->
+            <a href="https://cyborgman.tistory.com/entry/%EB%B0%A9%EC%86%A1%EC%84%B8%ED%8C%85-%ED%86%B5%ED%95%A9%EB%AC%B8%EC%84%9C" class="top-left-link" aria-label="방송세팅 통합문서">
+                방송세팅 통합문서
+            </a>
+        </div>
+
+        <!-- 레이어 9 -->
+        <div class="layer-wrapper" style="
+            left: 65.78125%;
+            top: 4.9074074074074066%;
+            width: 15.520833333333334%;
+            height: 39.53703703703703%;
+        ">
+            <a href="https://example.com/link9" class="layer-link">
+                <img src="layer_29.png" alt="레이어 9">
+                <span class="tooltip">레이어 9 설명</span>
+            </a>
+        </div>
+
+        <!-- 레이어 10 -->
+        <div class="layer-wrapper" style="
+            left: 82.96875%;
+            top: 14.351851851851851%;
+            width: 11.770833333333334%;
+            height: 30.09259259259259%;
+        ">
+            <a href="https://example.com/link10" class="layer-link">
+                <img src="layer_31.png" alt="레이어 10">
+                <span class="tooltip">레이어 10 설명</span>
+            </a>
+        </div>
+
+        <!-- c920 -->
+        <div class="layer-wrapper" style="
+            left: 36.197916666666664%;
+            top: 13.333333333333334%;
+            width: 7.135416666666666%;
+            height: 10.648148148148147%;
+        ">
+            <a href="https://example.com/c920" class="layer-link">
+                <img src="layer_25.png" alt="c920">
+                <span class="tooltip">c920 설명</span>
+            </a>
+        </div>
+
+        <!-- 레이어 3 -->
+        <div class="layer-wrapper" style="
+            left: 18.697916666666664%;
+            top: 11.296296296296296%;
+            width: 11.302083333333332%;
+            height: 38.703703703703695%;
+        ">
+            <a href="https://example.com/link3" class="layer-link">
+                <img src="layer_17.png" alt="레이어 3">
+                <span class="tooltip">레이어 3 설명</span>
+            </a>
+        </div>
+
+        <!-- 레이어 2 -->
+        <div class="layer-wrapper" style="
+            left: 18.697916666666664%;
+            top: 41.75925925925925%;
+            width: 62.60416666666666%;
+            height: 48.61111111111111%;
+        ">
+            <a href="https://example.com/link2" class="layer-link">
+                <img src="layer_5.png" alt="레이어 2">
+                <span class="tooltip">레이어 2 설명</span>
+            </a>
+        </div>
+
+        <!-- computer-158776_1280 -->
+        <div class="layer-wrapper" style="
+            left: 15.156249999999998%;
+            top: 57.68518518518518%;
+            width: 7.083333333333333%;
+            height: 28.240740740740737%;
+        ">
+            <a href="https://example.com/computer1" class="layer-link">
+                <img src="layer_9.png" alt="computer-158776_1280">
+                <span class="tooltip">컴퓨터 1</span>
+            </a>
+        </div>
+
+        <!-- 레이어 8 -->
+        <div class="layer-wrapper" style="
+            left: 30.416666666666664%;
+            top: 40.09259259259259%;
+            width: 17.552083333333332%;
+            height: 9.166666666666666%;
+        ">
+            <a href="https://example.com/link8" class="layer-link">
+                <img src="layer_27.png" alt="레이어 8">
+                <span class="tooltip">레이어 8 설명</span>
+            </a>
+        </div>
+
+        <!-- computer-158776_1280 복사 -->
+        <div class="layer-wrapper" style="
+            left: 7.083333333333333%;
+            top: 57.77777777777777%;
+            width: 7.083333333333333%;
+            height: 28.240740740740737%;
+        ">
+            <a href="https://example.com/computer2" class="layer-link">
+                <img src="layer_10.png" alt="computer-158776_1280 복사">
+                <span class="tooltip">컴퓨터 2</span>
+            </a>
+        </div>
+
+        <!-- monitor-32743_1280 -->
+        <div class="layer-wrapper" style="
+            left: 31.510416666666664%;
+            top: 17.685185185185183%;
+            width: 16.458333333333332%;
+            height: 24.074074074074073%;
+        ">
+            <a href="https://example.com/monitor1" class="layer-link">
+                <img src="layer_11.png" alt="monitor-32743_1280">
+                <span class="tooltip">모니터 1</span>
+            </a>
+        </div>
+
+        <!-- monitor-32743_1280 복사 -->
+        <div class="layer-wrapper" style="
+            left: 52.03124999999999%;
+            top: 17.685185185185183%;
+            width: 16.458333333333332%;
+            height: 24.074074074074073%;
+        ">
+            <a href="https://example.com/monitor2" class="layer-link">
+                <img src="layer_12.png" alt="monitor-32743_1280 복사">
+                <span class="tooltip">모니터 2</span>
+            </a>
+        </div>
+
+        <!-- 레이어 4 -->
+        <div class="layer-wrapper" style="
+            left: 28.125%;
+            top: 17.314814814814813%;
+            width: 2.96875%;
+            height: 14.722222222222223%;
+        ">
+            <a href="https://example.com/link4" class="layer-link">
+                <img src="layer_19.png" alt="레이어 4">
+                <span class="tooltip">레이어 4 설명</span>
+            </a>
+        </div>
+
+        <!-- 레이어 5 -->
+        <div class="layer-wrapper" style="
+            left: 24.375%;
+            top: 37.407407407407405%;
+            width: 8.28125%;
+            height: 5.277777777777778%;
+        ">
+            <a href="https://example.com/link5" class="layer-link">
+                <img src="layer_22.png" alt="레이어 5">
+                <span class="tooltip">레이어 5 설명</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
